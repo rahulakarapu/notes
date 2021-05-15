@@ -1,7 +1,7 @@
-$section-clr: gray;
-$section-clr-hover: #5e5b5b;
-$section-clr-focus: #5e5b5b;
-$font-color: #5e5b5b;
+$section-clr: white;
+$section-clr-hover: white;
+$section-clr-focus: white;
+$font-color: white;
 
 
 *,
@@ -19,6 +19,7 @@ body {
   font-size: 1.5rem;
   font-family: 'Kalam', cursive;
   // background-image: linear-gradient(to top, #cfd9df 0%, #e2ebf0 100%);
+  background-image: linear-gradient(-60deg, #ff5858 0%, #f09819 100%);
 }
 
 .App {
@@ -51,6 +52,8 @@ body {
     padding: 0.5rem;
     background: none;
     border-color: $section-clr;
+    caret-color: white;
+    color:white;
 
     &:hover {
       border-color: $section-clr-hover;
@@ -149,7 +152,8 @@ body {
         justify-content: center;
         min-height: 2rem;
         margin: 1rem;
-  
+        font-weight: bold;
+
         &:hover {
           cursor: pointer;
         }
@@ -188,6 +192,8 @@ body {
 }
 
 .table__data__row {
+  font-weight: lighter;
+  
   &__title {
     width: 40vw;
 
@@ -212,10 +218,6 @@ td, th {
   border: 1px solid #dddddd;
   text-align: left;
   padding: 8px;
-}
-
-tr:nth-child(even) {
-  background-color: #dddddd;
 }
 
 .table__data__row__action__container {

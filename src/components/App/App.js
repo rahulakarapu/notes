@@ -94,9 +94,9 @@ function App() {
                   <td className="table__data__row__status">{obj[e.status]}</td>
                   <td className="table__data__row__action">
                     <div className="table__data__row__action__container">
-                      { e.status !== "active" ? <button className="action" title="Set to In Progress"><i class="fa fa-spinner"></i></button> : null }
-                      { e.status !== "completed" ? <button className="action" title="Set to Completed"><i class="fa fa-check"></i></button> : null }
-                      <button className="action" title="Delete Note"><i class="	fa fa-trash-o"></i></button>
+                      { e.status !== "active" ? <button className="action" title="Set to In Progress"><i className="fa fa-spinner"></i></button> : null }
+                      { e.status !== "completed" ? <button className="action" title="Set to Completed"><i className="fa fa-check"></i></button> : null }
+                      <button className="action" title="Delete Note"><i className="	fa fa-trash-o"></i></button>
                     </div>
                   </td>
                 </tr>
