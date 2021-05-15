@@ -1,7 +1,7 @@
-$section-clr: white;
-$section-clr-hover: white;
-$section-clr-focus: white;
-$font-color: white;
+$section-clr: black;
+$section-clr-hover: black;
+$section-clr-focus: black;
+$font-color: black;
 
 
 *,
@@ -215,7 +215,7 @@ table {
 }
 
 td, th {
-  border: 1px solid #dddddd;
+  border: 1px solid black;
   text-align: left;
   padding: 8px;
 }
