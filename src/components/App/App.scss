@@ -1,0 +1,241 @@
+$section-clr: gray;
+$section-clr-hover: #5e5b5b;
+$section-clr-focus: #5e5b5b;
+$font-color: #5e5b5b;
+
+
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+body {
+  height: 100vh;
+  justify-content: center;
+  align-items: center;
+  font-size: 1.5rem;
+  font-family: 'Kalam', cursive;
+  // background-image: linear-gradient(to top, #cfd9df 0%, #e2ebf0 100%);
+}
+
+.App {
+  margin: 1rem;
+}
+
+.form {
+  display: flex;
+  justify-content: center;
+}
+
+.note {
+  position: relative;
+  width: 30rem;
+  height: 3rem;
+  margin: 1rem;
+
+  &__input {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    border-top: none;
+    border-left: none;
+    border-right: none;
+    font-family: inherit;
+    font-size: inherit;
+    outline: none;
+    padding: 0.5rem;
+    background: none;
+    border-color: $section-clr;
+
+    &:hover {
+      border-color: $section-clr-hover;
+    }
+  
+    &:focus {
+      border-color: $section-clr-focus;
+    }
+  }
+
+  &__label {
+    position: absolute;
+    color: $section-clr;
+    top: 0.8rem;
+    left: 1rem;
+    cursor: text;
+    transition: top 200ms ease-in, left 200ms ease-in, font-size 200ms ease-in;
+  }
+}
+
+.note__input:hover ~ .note__label {
+  color: $section-clr-hover;
+}
+
+.note__input:focus ~ .note__label,
+.note__input:not(:placeholder-shown).note__input:not(:focus) ~ .note__label {
+  top: -0.5rem;
+  left: 0.8rem;
+  font-size: 0.7rem;
+  color: $section-clr-focus;
+}
+
+.status {
+  margin-top: 2.5rem;
+  margin-right: 1rem;
+  margin-left: 1rem;
+  margin-bottom: 0rem;
+
+  &__select {
+    background: none;
+    outline: none;
+    border: none;
+    color: $section-clr-focus;
+    font-size: inherit;
+    font-family: inherit;
+  }
+}
+
+.submit {
+  display: flex;
+  justify-content: center;
+  margin-top: 1.2rem;
+  margin-bottom: 0rem;
+  min-width: 4.5rem;
+  min-height: 4.5rem;
+
+  &__button {
+    background: none;
+    outline: none;
+    border: none;
+    color: $section-clr-focus;
+    font-size: 2rem;
+    cursor: pointer;
+    transition: font-size 200ms ease-in;
+
+    &:hover {
+      border-radius: 0.5rem;
+      font-size: 3.5rem;
+    }
+  }
+}
+
+.container {
+  // height: calc(70vh);
+  // width: 70vw;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  margin: 3rem;
+  color: $font-color;
+
+  &__tabs {
+    display: flex;
+    justify-content: center;
+
+    &__ul {
+      display: flex;
+      justify-content: space-around;
+      // width: 30vw;
+      // height: 10vh;
+      // margin: 1rem 1rem 2rem 1rem;
+  
+      &__item {
+        display: flex;
+        justify-content: center;
+        min-height: 2rem;
+        margin: 1rem;
+  
+        &:hover {
+          cursor: pointer;
+        }
+      }
+    }
+  }
+
+  &__content {
+    &__table {
+      border: 1px solid black;
+      font-family: inherit;
+    }
+  }
+}
+
+.tab__item__active {
+  border-bottom-color: initial;
+  border-bottom-style: solid;
+  border-bottom-width: 2px;
+}
+
+.table__head__row {
+
+  &__title {
+    width: 40vw;
+
+  }
+
+  &__status {
+    width: 15vw;
+  }
+
+  &__action {
+    width: 15vw;
+  }
+}
+
+.table__data__row {
+  &__title {
+    width: 40vw;
+
+  }
+
+  &__status {
+    width: 15vw;
+  }
+
+  &__action {
+    width: 15vw;
+  }
+}
+
+
+table {
+  font-family: arial, sans-serif;
+  border-collapse: collapse;
+}
+
+td, th {
+  border: 1px solid #dddddd;
+  text-align: left;
+  padding: 8px;
+}
+
+tr:nth-child(even) {
+  background-color: #dddddd;
+}
+
+.table__data__row__action__container {
+  display: flex;
+  justify-content: space-around;
+}
+
+.action {
+  background: none;
+  outline: none;
+  border: none;
+  color: $section-clr-focus;
+  font-size: 1rem;
+  cursor: pointer;
+  height: 1.5rem;
+  width: 1rem;
+  transition: font-size 200ms ease-in;
+
+  &:hover {
+    border-radius: 0.5rem;
+    font-size: 1.5rem;
+  }
+}
