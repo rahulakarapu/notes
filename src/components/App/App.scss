@@ -232,15 +232,17 @@ td, th {
   outline: none;
   border: none;
   color: $section-clr-focus;
-  font-size: 1rem;
+  font-size: 1.5rem;
   cursor: pointer;
   height: 1.5rem;
   width: 1rem;
   transition: font-size 200ms ease-in;
+  margin-left: 2rem;
+  margin-right: 2rem;
 
   &:hover {
     border-radius: 0.5rem;
-    font-size: 1.5rem;
+    font-size: 2rem;
   }
 }
 
@@ -305,5 +307,16 @@ td, th {
 
   .table__data__row__action__container {
     min-width: 4rem;
+  }
+
+  .action {
+    font-size: inherit;
+    margin-left: 0;
+    margin-right: 0;
+
+    &:hover {
+      border-radius: 0.5rem;
+      font-size: inherit;
+    }
   }
 }
