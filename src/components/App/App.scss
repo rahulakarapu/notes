@@ -244,6 +244,18 @@ td, th {
   }
 }
 
+.error {
+  position: relative;
+  animation: shake .1s linear;
+  animation-iteration-count: 3;
+  border-color: red;
+}
+
+@keyframes shake {
+  0% { left: -10px; }
+  100% { right: -10px; }
+}
+
 @media all and (min-width:0px) and (max-width: 650px) {
   .form {
     flex-direction: column;
@@ -270,6 +282,10 @@ td, th {
     min-height: 0rem;
 
     &__button {
+      font-size: 2rem;
+    }
+
+    &__button:hover {
       font-size: 2rem;
     }
   }

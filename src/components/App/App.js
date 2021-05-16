@@ -10,6 +10,14 @@ function App() {
   //const [key, setKey] = useState('');
   const [activeTab, setActiveTab] = useState('ALL');
   const onAddButtonClick = function(event) {
+    var noteInput = document.getElementById("noteTitle");
+    if (noteInput.getAttribute("value") === '') {
+      noteInput.classList.add('error');
+      setTimeout(function() {
+        noteInput.classList.remove('error');
+      }, 300);
+      return;
+    }
     //var key = new Date(Date.now()+(new Date().getTimezoneOffset()*60000)).getTime().toString();
     //setKey(trKey.toString());
     saveNote({title, status});
