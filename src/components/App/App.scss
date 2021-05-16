@@ -53,7 +53,7 @@ body {
     outline: none;
     padding: 0.5rem;
     background: none;
-    border-color: black;
+    border-color: $section-clr-hover;
     caret-color: black;
     color:black;
 
@@ -224,7 +224,7 @@ td, th {
 
 .table__data__row__action__container {
   display: flex;
-  justify-content: space-around;
+  justify-content: space-between;
 }
 
 .action {
