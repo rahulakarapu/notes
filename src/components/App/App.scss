@@ -243,3 +243,46 @@ td, th {
     font-size: 1.5rem;
   }
 }
+
+@media all and (min-width:0px) and (max-width: 650px) {
+  .form {
+    flex-direction: column;
+  }
+
+  .note {
+    width: auto;
+    font-size: 1.25rem;
+  }
+
+  .status {
+    display: flex;
+    justify-content: center;
+    margin: 1rem;
+
+    &__select {
+      font-size: 1.25rem;
+    }
+  }
+
+  .submit {
+    margin: 0;
+    min-width: 0rem;
+    min-height: 0rem;
+
+    &__button {
+      font-size: 2rem;
+    }
+  }
+
+  .container__tabs {
+    font-size: 1rem;
+  }
+
+  .container__content__table {
+    font-size: 1rem;
+  }
+
+  .table__data__row__action__container {
+    min-width: 4rem;
+  }
+}

@@ -30,6 +30,20 @@ function App() {
     while (oSource.tagName.toLowerCase() !== 'tr') {
       oSource = oSource.parentNode;
     }
+    var oNote = {
+      title: oSource.children[0].innerText,
+      status: oSource.children[1].innerText === "Yet to Start" ? "" : oSource.children[1].innerText
+    };
+    var storedItems = localStorage.getItem('savedValues');
+    storedItems = JSON.parse(storedItems);
+    var index;
+    storedItems.forEach(function(e, i) {
+      if (e.title === oNote.title && e.status === oNote.status) {
+        index = i;
+      }
+    });
+    storedItems.splice(index, 1);
+    localStorage.setItem('savedValues', JSON.stringify(storedItems))
     oSource.parentNode.removeChild(oSource);
   };
 
