@@ -1,4 +1,4 @@
-import React, {useState} from "react";
+import React, {useState, useEffect} from "react";
 import './App.scss';
 import $ from 'jquery'; 
 
@@ -7,7 +7,6 @@ function App() {
   const [notes, setNotes] = useState([]);
   const [title, setTitle] = useState('');
   const [status, setStatus] = useState('');
-  //const [key, setKey] = useState('');
   const [activeTab, setActiveTab] = useState('ALL');
   const onAddButtonClick = function(event) {
     var noteInput = document.getElementById("noteTitle");
@@ -18,41 +17,44 @@ function App() {
       }, 300);
       return;
     }
-    //var key = new Date(Date.now()+(new Date().getTimezoneOffset()*60000)).getTime().toString();
-    //setKey(trKey.toString());
     saveNote({title, status});
     setNotes([...notes, {title, status}]);
     setTitle('');
     setStatus('');
   };
 
-  const updateState = function (status) {
-    if (status === "") {
-      setStatus('completed');
-    }
-    debugger;
+  useEffect(() => console.log("re-render because status changed:", status), [status])
+
+  const setNoteToCompleted = function (e) {
+    notes.forEach(function(ele, i) {
+      if (e.title === ele.title && e.status === ele.status) {
+        ele.status = "completed";
+      }
+    });
+    setNotes([...notes]);
+    localStorage.setItem('savedValues', JSON.stringify(notes));
+  };
+
+  const setNoteToInProgress = function (e) {
+    notes.forEach(function(ele, i) {
+      if (e.title === ele.title && e.status === ele.status) {
+        ele.status = "active";
+      }
+    });
+    setNotes([...notes]);
+    localStorage.setItem('savedValues', JSON.stringify(notes));
   };
   
-  const onDeleteButtonClick = function(event) {
-    var oSource = event.nativeEvent.srcElement;
-    while (oSource.tagName.toLowerCase() !== 'tr') {
-      oSource = oSource.parentNode;
-    }
-    var oNote = {
-      title: oSource.children[0].innerText,
-      status: oSource.children[1].innerText === "Yet to Start" ? "" : oSource.children[1].innerText
-    };
-    var storedItems = localStorage.getItem('savedValues');
-    storedItems = JSON.parse(storedItems);
+  const onDeleteButtonClick = function(e) {
     var index;
-    storedItems.forEach(function(e, i) {
-      if (e.title === oNote.title && e.status === oNote.status) {
+    notes.forEach(function(ele, i) {
+      if (ele.title === e.title && ele.status === e.status) {
         index = i;
       }
     });
-    storedItems.splice(index, 1);
-    localStorage.setItem('savedValues', JSON.stringify(storedItems))
-    oSource.parentNode.removeChild(oSource);
+    notes.splice(index, 1);
+    setNotes([...notes]);
+    localStorage.setItem('savedValues', JSON.stringify(notes));
   };
 
   const saveNote = function(item) {
@@ -148,9 +150,9 @@ function App() {
                   <td className="table__data__row__status">{obj[e.status]}</td>
                   <td className="table__data__row__action">
                     <div className="table__data__row__action__container">
-                      { e.status !== "active" ? <button className="action" title="Set to In Progress"><i className="fa fa-spinner"></i></button> : null }
-                      { e.status !== "completed" ? <button className="action" title="Set to Completed" onClick={() => updateState(e.status)}><i className="fa fa-check"></i></button> : null }
-                      <button className="action" title="Delete Note" onClick={(e) => onDeleteButtonClick(e)}><i className="	fa fa-trash-o"></i></button>
+                      { e.status !== "active" ? <button className="action" title="Set to In Progress" onClick={() => setNoteToInProgress(e)}><i className="fa fa-spinner"></i></button> : null }
+                      { e.status !== "completed" ? <button className="action" title="Set to Completed" onClick={() => setNoteToCompleted(e)}><i className="fa fa-check"></i></button> : null }
+                      <button className="action" title="Delete Note" onClick={() => onDeleteButtonClick(e)}><i className="	fa fa-trash-o"></i></button>
                     </div>
                   </td>
                 </tr>
