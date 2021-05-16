@@ -10,10 +10,27 @@ function App() {
   //const [key, setKey] = useState('');
   const [activeTab, setActiveTab] = useState('ALL');
   const onAddButtonClick = function(event) {
+    //var key = new Date(Date.now()+(new Date().getTimezoneOffset()*60000)).getTime().toString();
+    //setKey(trKey.toString());
     saveNote({title, status});
     setNotes([...notes, {title, status}]);
     setTitle('');
     setStatus('');
+  };
+
+  const updateState = function (status) {
+    if (status === "") {
+      setStatus('completed');
+    }
+    debugger;
+  };
+  
+  const onDeleteButtonClick = function(event) {
+    var oSource = event.nativeEvent.srcElement;
+    while (oSource.tagName.toLowerCase() !== 'tr') {
+      oSource = oSource.parentNode;
+    }
+    oSource.parentNode.removeChild(oSource);
   };
 
   const saveNote = function(item) {
@@ -24,12 +41,10 @@ function App() {
   }
 
   $(window).on('load', function(){
-    // your logic here`enter code here`
-    debugger;
     localStorage.getItem('savedValues');
-    var aNotes = JSON.parse(localStorage.getItem('savedValues'));
+    var aNotes = JSON.parse(localStorage.getItem('savedValues')) || [];
     setNotes([...aNotes]);
-});
+  });
 
   return (
     <div className="App">
@@ -112,8 +127,8 @@ function App() {
                   <td className="table__data__row__action">
                     <div className="table__data__row__action__container">
                       { e.status !== "active" ? <button className="action" title="Set to In Progress"><i className="fa fa-spinner"></i></button> : null }
-                      { e.status !== "completed" ? <button className="action" title="Set to Completed"><i className="fa fa-check"></i></button> : null }
-                      <button className="action" title="Delete Note"><i className="	fa fa-trash-o"></i></button>
+                      { e.status !== "completed" ? <button className="action" title="Set to Completed" onClick={() => updateState(e.status)}><i className="fa fa-check"></i></button> : null }
+                      <button className="action" title="Delete Note" onClick={(e) => onDeleteButtonClick(e)}><i className="	fa fa-trash-o"></i></button>
                     </div>
                   </td>
                 </tr>
