@@ -13,13 +13,15 @@ $font-color: black;
 }
 
 body {
-  height: 100vh;
+  min-height: 100vh;
   justify-content: center;
   align-items: center;
   font-size: 1.5rem;
   font-family: 'Kalam', cursive;
   // background-image: linear-gradient(to top, #cfd9df 0%, #e2ebf0 100%);
-  background-image: linear-gradient(-60deg, #ff5858 0%, #f09819 100%);
+  // background-image: linear-gradient(-60deg, #ff5858 0%, #f09819 100%);
+  // background-image: linear-gradient(to top, #fbc2eb 0%, #a6c1ee 100%);
+  background-image: linear-gradient(to top, #a18cd1 0%, #fbc2eb 100%);
 }
 
 .App {
@@ -52,8 +54,8 @@ body {
     padding: 0.5rem;
     background: none;
     border-color: $section-clr;
-    caret-color: white;
-    color:white;
+    caret-color: black;
+    color:black;
 
     &:hover {
       border-color: $section-clr-hover;

@@ -7,19 +7,36 @@ function App() {
   const [notes, setNotes] = useState([]);
   const [title, setTitle] = useState('');
   const [status, setStatus] = useState('');
+  //const [key, setKey] = useState('');
   const [activeTab, setActiveTab] = useState('ALL');
   const onAddButtonClick = function(event) {
+    saveNote({title, status});
     setNotes([...notes, {title, status}]);
     setTitle('');
     setStatus('');
   };
+
+  const saveNote = function(item) {
+    var storedItems = localStorage.getItem('savedValues');
+    storedItems = storedItems ? JSON.parse(storedItems) : [];
+    storedItems && storedItems.push(item);
+    localStorage.setItem('savedValues', JSON.stringify(storedItems))
+  }
+
+  $(window).on('load', function(){
+    // your logic here`enter code here`
+    debugger;
+    localStorage.getItem('savedValues');
+    var aNotes = JSON.parse(localStorage.getItem('savedValues'));
+    setNotes([...aNotes]);
+});
 
   return (
     <div className="App">
       <section className="form">
         <div className="note">
           <input type="text" id="noteTitle" className="note__input" placeholder=" " value={title} onChange={(e) => setTitle(e.target.value)}/>
-          <label className="note__label">Note Title</label>
+          <label for="noteTitle" className="note__label">What do you plan to do today?</label>
         </div>
         <div className="status">
           <select name="status" id="note-status" className="status__select" value={status} onChange={(e) => setStatus(e.target.value)}>
