@@ -23,7 +23,18 @@ function App() {
     setStatus('');
   };
 
-  useEffect(() => console.log("re-render because status changed:", status), [status])
+  useEffect(() => {
+    const triggerButtonClick = function(event) {
+      if (event.key === "Enter") {
+        event.preventDefault();
+        document.getElementById("submitButton").click();
+      }
+    }
+    const input = document.getElementById("noteTitle");
+    const select = document.getElementById("note-status");
+    input.addEventListener("keyup", triggerButtonClick);
+    select.addEventListener("keyup", triggerButtonClick);
+  }, [])
 
   const setNoteToCompleted = function (e) {
     notes.forEach(function(ele, i) {
@@ -85,7 +96,7 @@ function App() {
           </select>
         </div>
         <div className="submit">
-          <button className="submit__button" onClick={() => onAddButtonClick()}>+</button>
+          <button id="submitButton" className="submit__button" onClick={() => onAddButtonClick()}>+</button>
         </div>
       </section>
       <div className="container">
